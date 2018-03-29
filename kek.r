@@ -1,7 +1,11 @@
+library("tidyverse") 
+library("tidyr") 
+library("stringr") 
+library("dplyr") 
 library("tibble") 
 library("readr") 
 library("ggplot2") 
-library("dplyr") 
+library("dplyr")  
 x = read_csv("eddypro.csv", skip = 1, na =c("","NA","-9999","-9999.0"), comment=c("[")) 
 x = x[-1,] 
 x 
@@ -42,7 +46,7 @@ vars
 formula = as.formula(paste("co2_flux~", paste(vars,collapse = "+"), sep = "")) 
 formula 
 row_numbers = 1:length(x$date) 
-teach = sample(row_numbers, floor(length(x$date)*.7)) 
+teach = sample(row_numbers, floor(length(x$date)*.1)) 
 test = row_numbers[-teach] 
 teaching_x_unq = x[teach,] 
 testing_x_unq = x[test,] 
@@ -67,3 +71,4 @@ resid(mod2)
 confint(mod2) 
 summary(mod2) 
 anova(mod2)
+
