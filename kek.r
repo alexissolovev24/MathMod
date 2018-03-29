@@ -41,12 +41,12 @@ cor_x = cor(na.omit(x_numeric))
 cor_x 
 cor_x = cor(na.omit(x_numeric)) %>% as.data.frame %>% select(co2_flux) 
 cor_x 
-vars = row.names(cor_x)[cor_x$co2_flux^2 > .7] %>% na.exclude 
+vars = row.names(cor_x)[cor_x$co2_flux^2 > .1] %>% na.exclude 
 vars 
 formula = as.formula(paste("co2_flux~", paste(vars,collapse = "+"), sep = "")) 
 formula 
 row_numbers = 1:length(x$date) 
-teach = sample(row_numbers, floor(length(x$date)*.1)) 
+teach = sample(row_numbers, floor(length(x$date)*.7)) 
 test = row_numbers[-teach] 
 teaching_x_unq = x[teach,] 
 testing_x_unq = x[test,] 
@@ -71,4 +71,3 @@ resid(mod2)
 confint(mod2) 
 summary(mod2) 
 anova(mod2)
-
